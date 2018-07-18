@@ -55,7 +55,11 @@ struct hyper_carray {
 	uint8_t *items;
 };
 
+#ifdef _WIN32
+typedef struct hyper_carray *carray_ptr;
+#else
 typedef struct hyper_carray *restrict carray_ptr;
+#endif
 
 #define HYPER_CARRAY_SIZE sizeof(struct hyper_carray)
 
@@ -84,16 +88,22 @@ static void carray_alloc(unsigned int precision, carray_ptr * arr)
 	memset(*arr, 0, header_size);
 	(*arr)->precision = precision;
 	(*arr)->size = nitems;
-	(*arr)->items = res + header_size;
+	(*arr)->items = (uint8_t *) res + header_size;
 }
 
 /*
  * Given an hyper_carray and a valid index, set the value at that index to
  * max(current value, given value).
  */
+#ifdef _WIN32
+static void carray_merge_item(carray_ptr arr,
+				     unsigned int index,
+				     unsigned int value)
+#else
 static inline void carray_merge_item(carray_ptr arr,
 				     unsigned int index,
 				     unsigned int value)
+#endif
 {
 	uint8_t *item = arr->items + index;
 	*item = (value > *item) ? value : *item;
