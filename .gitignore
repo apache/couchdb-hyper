@@ -8,4 +8,9 @@ erl_crash.dump
 *.so
 *.o
 *.d
+*.dll
+*.exp
+*.lib
+*.pdb
+*.swp
 .rebar
