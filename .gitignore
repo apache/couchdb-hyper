@@ -14,3 +14,7 @@ erl_crash.dump
 *.pdb
 *.swp
 .rebar
+
+.idea
+_build
+*.lock

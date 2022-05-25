@@ -1,11 +1,10 @@
-{application, hyper,
- [
-  {description, ""},
-  {vsn, "1.0"},
-  {registered, []},
-  {applications, [
-                  kernel,
-                  stdlib
-                 ]},
-  {env, []}
- ]}.
+{application, hyper, [
+    {description, "HyperLogLog for Erlang"},
+    {vsn, "1.0"},
+    {registered, []},
+    {applications, [
+        kernel,
+        stdlib
+    ]},
+    {env, []}
+]}.
